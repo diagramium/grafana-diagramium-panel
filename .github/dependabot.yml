@@ -17,9 +17,10 @@ updates:
       prefix: 'chore'
       include: 'scope'
     ignore:
-      # The Grafana libraries are the API the plugin is built against. They stay
-      # at the oldest Grafana the plugin supports (plugin.json grafanaDependency)
-      # and move deliberately, together with that version.
+      # The Grafana libraries are the API the plugin is built against. They move
+      # deliberately, by hand: newer typings can use APIs that the oldest
+      # supported Grafana (plugin.json grafanaDependency) lacks. CI's e2e matrix
+      # runs every supported Grafana version.
       - dependency-name: '@grafana/data'
       - dependency-name: '@grafana/i18n'
       - dependency-name: '@grafana/runtime'
