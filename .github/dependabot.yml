@@ -1,44 +1,43 @@
+# Tuned for a one-maintainer repository: one grouped pull request a month per
+# ecosystem, instead of one per package per week.
 version: 2
 updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     # Wait 5 days before updating to help circumvent supply chain attacks
     cooldown:
       default-days: 5
       # Exclude plugin-e2e to prevent false positives with canary e2e tests
       exclude:
         - '@grafana/plugin-e2e'
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     commit-message:
       prefix: 'chore'
       include: 'scope'
+    ignore:
+      # The Grafana libraries are the API the plugin is built against. They stay
+      # at the oldest Grafana the plugin supports (plugin.json grafanaDependency)
+      # and move deliberately, together with that version.
+      - dependency-name: '@grafana/data'
+      - dependency-name: '@grafana/i18n'
+      - dependency-name: '@grafana/runtime'
+      - dependency-name: '@grafana/schema'
+      - dependency-name: '@grafana/ui'
+      # Major versions of the build and lint tooling arrive through Grafana's
+      # scaffold updates (npx @grafana/create-plugin@latest update), which
+      # change the configs that go with them.
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
     groups:
-      unit-test:
-        patterns:
-          - '@testing-library/*'
-          - 'jest*'
-          - '@types/jest'
-      eslint:
-        patterns:
-          - '@grafana/eslint-config'
-          - 'eslint*'
-          - '@typescript-eslint/*'
-          - '@stylistic/*'
-      grafana:
-        patterns:
-          - '@grafana/*'
-        dependency-type: 'production'
+      dev-dependencies:
+        dependency-type: 'development'
         update-types:
           - 'minor'
           - 'patch'
-      react:
-        patterns:
-          - 'react'
-          - 'react-dom'
-          - '@types/react'
-          - '@types/react-dom'
+      runtime-dependencies:
+        dependency-type: 'production'
         update-types:
           - 'minor'
           - 'patch'
@@ -46,7 +45,11 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     commit-message:
       prefix: 'chore(ci)'
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 2
+    groups:
+      actions:
+        patterns:
+          - '*'
