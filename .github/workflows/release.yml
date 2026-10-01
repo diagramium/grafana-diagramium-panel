@@ -64,7 +64,11 @@ jobs:
           mv dist "${ID}"
           zip -qr "${ARCHIVE}" "${ID}"
           sha1sum "${ARCHIVE}" | cut -d' ' -f1 > "${ARCHIVE}.sha1"
+          # The same file under a fixed name, so the latest release always
+          # downloads from .../releases/latest/download/<id>.zip.
+          cp "${ARCHIVE}" "${ID}.zip"
           echo "ARCHIVE=${ARCHIVE}" >> "$GITHUB_ENV"
+          echo "LATEST_ARCHIVE=${ID}.zip" >> "$GITHUB_ENV"
 
       - name: Grafana plugin validator (report only)
         continue-on-error: true
@@ -80,7 +84,11 @@ jobs:
 
           ### Install
 
-          Unzip the attached archive into your Grafana plugins folder (or use `grafana cli --pluginUrl <zip url> plugins install diagramium-diagram-panel`), allow the unsigned plugin and restart Grafana:
+          ```bash
+          grafana cli --pluginUrl https://github.com/diagramium/grafana-diagramium-panel/releases/latest/download/diagramium-diagram-panel.zip plugins install diagramium-diagram-panel
+          ```
+
+          or unzip the attached archive into your Grafana plugins folder. Then allow the unsigned plugin and restart Grafana:
 
           ```ini
           [plugins]
@@ -94,7 +102,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${TAG}" "${ARCHIVE}" "${ARCHIVE}.sha1" \
+          gh release create "${TAG}" "${ARCHIVE}" "${ARCHIVE}.sha1" "${LATEST_ARCHIVE}" \
             --repo "${GITHUB_REPOSITORY}" \
             --title "${TAG}" \
             --notes-file notes.md \
