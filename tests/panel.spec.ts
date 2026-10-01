@@ -34,10 +34,10 @@ test('clicking a shape drills down with its matched name', async ({ gotoDashboar
   await expect(page).toHaveURL(/\/d\/diagramium-drill-down\/.*var-target=payments/);
 });
 
-test('a new panel explains how to add a diagram', async ({ panelEditPage, readProvisionedDataSource, page }) => {
-  const ds = await readProvisionedDataSource({ fileName: 'datasources.yml' });
-  await panelEditPage.datasource.set(ds.name);
-  await panelEditPage.setVisualization('Diagramium');
+test('a panel without a diagram explains how to add one', async ({ gotoDashboardPage, page }) => {
+  // Opened from a provisioned dashboard rather than through the visualization
+  // picker, whose markup changes between Grafana versions.
+  await gotoDashboardPage({ uid: 'diagramium-start' });
   await expect(page.getByText('No diagram yet.')).toBeVisible();
 });
 

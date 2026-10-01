@@ -30,14 +30,29 @@
       "type": "text",
       "title": "",
       "gridPos": {
-        "h": 18,
-        "w": 24,
+        "h": 20,
+        "w": 16,
         "x": 0,
         "y": 0
       },
       "options": {
         "mode": "markdown",
         "content": "# Diagramium panel\nArchitecture diagrams drawn in [Diagramium](https://www.diagramium.com), coloured live by your data. Every demo here runs on the built-in TestData source.\n\n| Demo | What it shows |\n| --- | --- |\n| [Online store — the whole platform](/d/diagramium-platform) | 27 shapes, three metric families, blue informational series; **click a service** for its dashboard, **click Checkout** for its internal flow |\n| [Inside Checkout](/d/diagramium-checkout) | The second drill-down level: a request flow with per-step latency |\n| [Kubernetes cluster](/d/diagramium-kubernetes) | Deployments, stateful pods, node readiness as a value mapping (Ready / NotReady) |\n| [Data pipeline](/d/diagramium-data-pipeline) | Consumer lag, table freshness, failed loads, fill mode, connectors coloured at both ends |\n| [Production deployment](/d/diagramium-production) | node_exporter-style `instance=\"host:9100\"` labels, live |\n| [Server room — rack A](/d/diagramium-hardware-rack) | One SQL-style table keyed by a column |\n| [Docker host](/d/diagramium-docker-host) | Containers from a table, plus a host series on the group frame |\n| [Microservices](/d/diagramium-microservices) | Zero configuration: series named after the shapes |\n\nPress **Explain** on any diagram for its guided tour. Hover a shape for its values. Open a panel in edit mode and look at **Data → Shapes** to see how each shape is matched."
+      }
+    },
+    {
+      "id": 111,
+      "type": "diagramium-diagram-panel",
+      "title": "Your diagram goes here",
+      "gridPos": {
+        "h": 20,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "options": {
+        "source": "inline",
+        "diagram": ""
       }
     }
   ]

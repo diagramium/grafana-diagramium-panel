@@ -595,8 +595,16 @@ const startBoard = {
         '',
         'Press **Explain** on any diagram for its guided tour. Hover a shape for its values. Open a panel in edit mode and look at **Data → Shapes** to see how each shape is matched.',
       ].join('\n'),
-      { h: 18, w: 24, x: 0, y: 0 }
+      { h: 20, w: 16, x: 0, y: 0 }
     ),
+    {
+      // An empty panel: what a new Diagramium panel looks like before a diagram is uploaded.
+      id: pid++,
+      type: 'diagramium-diagram-panel',
+      title: 'Your diagram goes here',
+      gridPos: { h: 20, w: 8, x: 16, y: 0 },
+      options: { source: 'inline', diagram: '' },
+    },
   ],
 };
 
