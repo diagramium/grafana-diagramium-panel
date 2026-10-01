@@ -1,0 +1,433 @@
+{
+  "uid": "diagramium-checkout",
+  "title": "Inside Checkout — POST /checkout",
+  "description": "Per-step p95 latency (label step=…) and outcome rates. Reached by clicking Checkout on the platform map.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "5s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Platform map",
+      "type": "link",
+      "url": "/d/diagramium-platform",
+      "keepTime": true,
+      "icon": "arrow-left"
+    },
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Inside Checkout — POST /checkout",
+      "description": "Per-step p95 latency (label step=…) and outcome rates. Reached by clicking Checkout on the platform map.",
+      "gridPos": {
+        "h": 24,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "12,14,13,15,12,12",
+              "labels": "step=validate-cart",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "28,31,35,33,29,28",
+              "labels": "step=price-tax",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "60,70,85,90,72,64",
+              "labels": "step=reserve-stock",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "90,110,140,150,120,95",
+              "labels": "step=fraud-check",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "280,480,690,920,600,350",
+              "labels": "step=charge-card",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "25,28,34,38,31,26",
+              "labels": "step=create-order",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "8,9,12,10,9,8",
+              "labels": "step=publish-order-placed",
+              "name": "p95 latency"
+            }
+          ]
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "42,45,51,48,44,43",
+              "labels": "step=post-checkout",
+              "name": "Requests/s"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "40,42,46,44,41,41",
+              "labels": "step=200-confirmed",
+              "name": "Requests/s"
+            }
+          ]
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "1.2,1.6,2.4,3.1,2.0,1.4",
+              "labels": "step=402-declined",
+              "name": "Declined"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "ms",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 200
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "reqps"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 2
+                    },
+                    {
+                      "color": "red",
+                      "value": 5
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"flowchart\",\"state\":{\"title\":\"Inside Checkout — POST /checkout\",\"theme\":null,\"nodes\":[{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"req\",\"type\":\"start\",\"text\":\"POST /checkout\",\"x\":140,\"y\":90},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"validate\",\"type\":\"process\",\"text\":\"Validate cart\",\"x\":140,\"y\":200},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"price\",\"type\":\"process\",\"text\":\"Price & tax\",\"x\":140,\"y\":310},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"reserve\",\"type\":\"process\",\"text\":\"Reserve stock\",\"x\":140,\"y\":420},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"fraud\",\"type\":\"decision\",\"text\":\"Fraud check\",\"x\":140,\"y\":550},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"charge\",\"type\":\"process\",\"text\":\"Charge card\",\"x\":420,\"y\":550},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"order\",\"type\":\"process\",\"text\":\"Create order\",\"x\":420,\"y\":420},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"publish\",\"type\":\"process\",\"text\":\"Publish order.placed\",\"x\":420,\"y\":310},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ok\",\"type\":\"end\",\"text\":\"200 Confirmed\",\"x\":420,\"y\":200},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"reject\",\"type\":\"end\",\"text\":\"402 Declined\",\"x\":140,\"y\":680}],\"edges\":[{\"id\":\"e1\",\"from\":\"req\",\"to\":\"validate\",\"label\":\"\"},{\"id\":\"e2\",\"from\":\"validate\",\"to\":\"price\",\"label\":\"\"},{\"id\":\"e3\",\"from\":\"price\",\"to\":\"reserve\",\"label\":\"\"},{\"id\":\"e4\",\"from\":\"reserve\",\"to\":\"fraud\",\"label\":\"\"},{\"id\":\"e5\",\"from\":\"fraud\",\"to\":\"charge\",\"label\":\"pass\"},{\"id\":\"e6\",\"from\":\"fraud\",\"to\":\"reject\",\"label\":\"fail\"},{\"id\":\"e7\",\"from\":\"charge\",\"to\":\"order\",\"label\":\"\"},{\"id\":\"e8\",\"from\":\"order\",\"to\":\"publish\",\"label\":\"\"},{\"id\":\"e9\",\"from\":\"publish\",\"to\":\"ok\",\"label\":\"\"}],\"narration\":{\"1\":\"A checkout request arrives from the gateway.\",\"2\":\"Validate the cart: items exist, quantities make sense.\",\"3\":\"Price it and add tax for the delivery address.\",\"4\":\"Reserve stock in Inventory, so nobody else buys the last one.\",\"5\":\"A fraud score decides whether to go on.\",\"6\":\"Charge the card through Payments and Stripe — the slowest step.\",\"7\":\"Write the order to the Orders DB.\",\"8\":\"Publish order.placed for fulfilment and email.\",\"9\":\"Confirmed: the shopper sees the thank-you page.\",\"10\":\"A high fraud score declines the order and releases the stock.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {},
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "auto",
+        "themeBackground": false,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    },
+    {
+      "id": 100,
+      "type": "text",
+      "title": "",
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "### Inside Checkout\nOne level below the platform map: each step of `POST /checkout`, coloured by its own p95 latency. **Charge card** waits on Stripe, so it is the first to turn orange."
+      }
+    },
+    {
+      "id": 101,
+      "type": "stat",
+      "title": "Checkout success rate",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 4
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "random_walk",
+          "seriesCount": 1,
+          "alias": "success",
+          "startValue": 98.6,
+          "spread": 0.2,
+          "min": 90,
+          "max": 100,
+          "seed": 163.6
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 97
+              },
+              {
+                "color": "green",
+                "value": 99
+              }
+            ]
+          },
+          "decimals": 2
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"]
+        },
+        "colorMode": "background",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 102,
+      "type": "stat",
+      "title": "Orders / min",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 4
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "random_walk",
+          "seriesCount": 1,
+          "alias": "orders",
+          "startValue": 2600,
+          "spread": 40,
+          "min": 0,
+          "seed": 2666
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1000000000
+              },
+              {
+                "color": "red",
+                "value": 1000000000
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"]
+        },
+        "colorMode": "background",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 103,
+      "type": "timeseries",
+      "title": "Charge card — p95 (ms)",
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "random_walk",
+          "seriesCount": 1,
+          "alias": "charge-card",
+          "startValue": 450,
+          "spread": 30,
+          "min": 0,
+          "seed": 517
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

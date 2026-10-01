@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Diagramium">
+  <rect width="120" height="120" rx="26" fill="#EFE5CF"/>
+  <g fill="none" stroke="#171821" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 32 L40 88"/>
+    <path d="M40 32 C74 32 90 44 90 60 C90 76 74 88 40 88"/>
+  </g>
+  <circle cx="40" cy="32" r="10" fill="#171821"/>
+  <circle cx="40" cy="88" r="10" fill="#171821"/>
+  <circle cx="90" cy="60" r="13" fill="#F97316"/>
+</svg>

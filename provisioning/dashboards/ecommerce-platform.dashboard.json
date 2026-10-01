@@ -1,0 +1,439 @@
+{
+  "uid": "diagramium-platform",
+  "title": "Online store — the whole platform",
+  "description": "Error rate, p95 latency and saturation per service (label service=…), plus requests/s in blue as information. Click any service for its dashboard; click Checkout for its internal flow.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "5s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Online store — the whole platform",
+      "description": "Error rate, p95 latency and saturation per service (label service=…), plus requests/s in blue as information. Click any service for its dashboard; click Checkout for its internal flow.",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.1,0.1,0.2,0.1,0.1,0.1",
+              "labels": "service=cdn",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.1,0.2,0.1,0.1,0.2,0.1",
+              "labels": "service=load-balancer",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.3,0.4,0.3,0.5,0.4,0.3",
+              "labels": "service=storefront",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.4,0.5,0.6,0.7,0.5,0.4",
+              "labels": "service=api-gateway",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.2,0.2,0.3,0.2,0.2,0.2",
+              "labels": "service=identity",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.3,0.2,0.4,0.3,0.3,0.2",
+              "labels": "service=catalog",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.5,0.6,0.9,0.8,0.6,0.5",
+              "labels": "service=search",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.2,0.3,0.2,0.3,0.2,0.2",
+              "labels": "service=cart",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.6,0.9,1.4,1.8,1.1,0.7",
+              "labels": "service=checkout",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.2,0.3,0.4,0.3,0.2,0.2",
+              "labels": "service=inventory",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.4,1.8,3.2,6.4,2.6,0.9",
+              "labels": "service=payments",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.1,0.1,0.2,0.1,0.1,0.1",
+              "labels": "service=fulfilment",
+              "name": "Error rate"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0.3,0.2,0.3,0.2,0.4,0.3",
+              "labels": "service=notifications",
+              "name": "Error rate"
+            }
+          ]
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "18,21,19,22,20,18",
+              "labels": "service=cdn",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "4,5,4,6,5,4",
+              "labels": "service=load-balancer",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "120,140,150,130,125,120",
+              "labels": "service=storefront",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "35,40,52,61,44,38",
+              "labels": "service=api-gateway",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "45,48,52,50,47,46",
+              "labels": "service=identity",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "80,85,92,88,84,80",
+              "labels": "service=catalog",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "160,190,240,260,210,170",
+              "labels": "service=search",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "30,32,35,33,31,30",
+              "labels": "service=cart",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "420,610,880,940,700,520",
+              "labels": "service=checkout",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "60,70,85,90,72,64",
+              "labels": "service=inventory",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "310,520,760,980,640,380",
+              "labels": "service=payments",
+              "name": "p95 latency"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "280,480,690,920,600,350",
+              "labels": "service=stripe",
+              "name": "p95 latency"
+            }
+          ]
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "31,33,35,34,32,31",
+              "labels": "service=users-db",
+              "name": "Saturation"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "44,46,49,52,48,45",
+              "labels": "service=catalog-db",
+              "name": "Saturation"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "66,72,79,82,74,68",
+              "labels": "service=search-index",
+              "name": "Saturation"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "22,24,25,23,22,21",
+              "labels": "service=session-cache",
+              "name": "Saturation"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "48,55,63,68,60,52",
+              "labels": "service=orders-db",
+              "name": "Saturation"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "35,38,44,41,37,35",
+              "labels": "service=event-bus",
+              "name": "Saturation"
+            }
+          ]
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "820,860,910,880,840,830",
+              "labels": "service=storefront",
+              "name": "Requests/s"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "1450,1520,1610,1580,1500,1470",
+              "labels": "service=api-gateway",
+              "name": "Requests/s"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "42,45,51,48,44,43",
+              "labels": "service=checkout",
+              "name": "Requests/s"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ms"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 300
+                    },
+                    {
+                      "color": "red",
+                      "value": 800
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 75
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "reqps"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"architecture\",\"state\":{\"title\":\"Online store — the whole platform\",\"theme\":null,\"nodes\":[{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"shoppers\",\"type\":\"client\",\"text\":\"Shoppers\",\"x\":90,\"y\":300},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"mobile\",\"type\":\"mobile\",\"text\":\"Mobile app\",\"x\":90,\"y\":470},{\"color\":null,\"w\":192,\"h\":322,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"edge\",\"type\":\"group\",\"text\":\"Edge\",\"x\":290,\"y\":368},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"edge\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"cdn\",\"type\":\"cdn\",\"text\":\"CDN\",\"x\":290,\"y\":300},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"edge\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"lb\",\"type\":\"loadbalancer\",\"text\":\"Load balancer\",\"x\":290,\"y\":470},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"web\",\"type\":\"webapp\",\"text\":\"Storefront\",\"x\":490,\"y\":300},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"gw\",\"type\":\"apigateway\",\"text\":\"API Gateway\",\"x\":490,\"y\":470},{\"color\":null,\"w\":172,\"h\":742,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"k8s\",\"type\":\"group\",\"text\":\"Kubernetes · shop namespace\",\"x\":720,\"y\":398},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"identity\",\"type\":\"auth\",\"text\":\"Identity\",\"x\":720,\"y\":120},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"catalog\",\"type\":\"service\",\"text\":\"Catalog\",\"x\":720,\"y\":230},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"search\",\"type\":\"service\",\"text\":\"Search\",\"x\":720,\"y\":340},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"cart\",\"type\":\"service\",\"text\":\"Cart\",\"x\":720,\"y\":450},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"checkout\",\"type\":\"service\",\"text\":\"Checkout\",\"x\":720,\"y\":580},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"k8s\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"inventory\",\"type\":\"service\",\"text\":\"Inventory\",\"x\":720,\"y\":710},{\"color\":null,\"w\":192,\"h\":612,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"data\",\"type\":\"group\",\"text\":\"Data stores\",\"x\":960,\"y\":333},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"usersdb\",\"type\":\"database\",\"text\":\"Users DB\",\"x\":960,\"y\":120},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"catalogdb\",\"type\":\"database\",\"text\":\"Catalog DB\",\"x\":960,\"y\":230},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"searchidx\",\"type\":\"database\",\"text\":\"Search index\",\"x\":960,\"y\":340},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"redis\",\"type\":\"cache\",\"text\":\"Session cache\",\"x\":960,\"y\":450},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ordersdb\",\"type\":\"database\",\"text\":\"Orders DB\",\"x\":960,\"y\":580},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"payments\",\"type\":\"service\",\"text\":\"Payments\",\"x\":960,\"y\":710},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"stripe\",\"type\":\"external\",\"text\":\"Stripe\",\"x\":1200,\"y\":710},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"kafka\",\"type\":\"queue\",\"text\":\"Event bus\",\"x\":1200,\"y\":470},{\"color\":null,\"w\":192,\"h\":292,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"async\",\"type\":\"group\",\"text\":\"Async workers\",\"x\":1440,\"y\":553},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"async\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"fulfil\",\"type\":\"worker\",\"text\":\"Fulfilment\",\"x\":1440,\"y\":500},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"async\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"notify\",\"type\":\"worker\",\"text\":\"Notifications\",\"x\":1440,\"y\":640},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"email\",\"type\":\"external\",\"text\":\"Email (SES)\",\"x\":1440,\"y\":790}],\"edges\":[{\"id\":\"e1\",\"from\":\"shoppers\",\"to\":\"cdn\",\"label\":\"\"},{\"id\":\"e2\",\"from\":\"cdn\",\"to\":\"web\",\"label\":\"\"},{\"id\":\"e3\",\"from\":\"web\",\"to\":\"gw\",\"label\":\"api\"},{\"id\":\"e4\",\"from\":\"mobile\",\"to\":\"lb\",\"label\":\"\"},{\"id\":\"e5\",\"from\":\"lb\",\"to\":\"gw\",\"label\":\"\"},{\"id\":\"e6\",\"from\":\"gw\",\"to\":\"identity\",\"label\":\"\"},{\"id\":\"e7\",\"from\":\"gw\",\"to\":\"catalog\",\"label\":\"\"},{\"id\":\"e8\",\"from\":\"gw\",\"to\":\"search\",\"label\":\"\"},{\"id\":\"e9\",\"from\":\"gw\",\"to\":\"cart\",\"label\":\"\"},{\"id\":\"e10\",\"from\":\"gw\",\"to\":\"checkout\",\"label\":\"\"},{\"id\":\"e11\",\"from\":\"identity\",\"to\":\"usersdb\",\"label\":\"\"},{\"id\":\"e12\",\"from\":\"catalog\",\"to\":\"catalogdb\",\"label\":\"\"},{\"id\":\"e13\",\"from\":\"search\",\"to\":\"searchidx\",\"label\":\"\"},{\"id\":\"e14\",\"from\":\"cart\",\"to\":\"redis\",\"label\":\"\"},{\"id\":\"e15\",\"from\":\"checkout\",\"to\":\"ordersdb\",\"label\":\"\"},{\"id\":\"e16\",\"from\":\"checkout\",\"to\":\"inventory\",\"label\":\"\"},{\"id\":\"e17\",\"from\":\"checkout\",\"to\":\"payments\",\"label\":\"\"},{\"id\":\"e18\",\"from\":\"payments\",\"to\":\"stripe\",\"label\":\"\"},{\"id\":\"e19\",\"from\":\"checkout\",\"to\":\"kafka\",\"label\":\"order.placed\"},{\"id\":\"e20\",\"from\":\"kafka\",\"to\":\"fulfil\",\"label\":\"\"},{\"id\":\"e21\",\"from\":\"kafka\",\"to\":\"notify\",\"label\":\"\"},{\"id\":\"e22\",\"from\":\"notify\",\"to\":\"email\",\"label\":\"\"}],\"narration\":{\"1\":\"Everything starts with a shopper on the web…\",\"2\":\"…or in the mobile app.\",\"3\":\"The edge: CDN and load balancer.\",\"4\":\"The CDN serves the storefront and every image from the edge.\",\"5\":\"The load balancer takes API traffic and drops unhealthy gateway pods.\",\"6\":\"The storefront is a single-page app; it talks to the same API as mobile.\",\"7\":\"The API gateway authenticates, rate-limits and routes every call.\",\"8\":\"Six services run in one Kubernetes namespace.\",\"9\":\"Identity owns accounts, sessions and tokens.\",\"10\":\"Catalog serves products, prices and availability.\",\"11\":\"Search answers queries from its own index.\",\"12\":\"Cart keeps baskets in the session cache.\",\"13\":\"Checkout is the money path: click it to see its own steps.\",\"14\":\"Inventory reserves stock while the payment runs.\",\"15\":\"Each service owns its data store.\",\"16\":\"Users DB: PostgreSQL.\",\"17\":\"Catalog DB: PostgreSQL, read replicas behind it.\",\"18\":\"The search index: OpenSearch.\",\"19\":\"The session cache: Redis.\",\"20\":\"Orders DB is the system of record for every order.\",\"21\":\"Payments charges the card…\",\"22\":\"…through Stripe. When Stripe slows down, Payments and Checkout feel it first.\",\"23\":\"Checkout publishes order.placed on the event bus.\",\"24\":\"Workers react to events, after the shopper has gone.\",\"25\":\"Fulfilment picks orders and books couriers.\",\"26\":\"Notifications sends the confirmation email…\",\"27\":\"…through the email provider.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {
+          "checkout": {
+            "link": "/d/diagramium-checkout/inside-checkout?${__url_time_range}"
+          },
+          "stripe": {
+            "link": "https://status.stripe.com"
+          }
+        },
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-service/service?var-service=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "auto",
+        "themeBackground": false,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}

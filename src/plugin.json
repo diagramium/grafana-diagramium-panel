@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "panel",
+  "name": "Diagramium",
+  "id": "diagramium-diagram-panel",
+  "info": {
+    "keywords": [
+      "diagram",
+      "architecture",
+      "topology",
+      "infrastructure",
+      "status map",
+      "service map",
+      "flow",
+      "diagramium"
+    ],
+    "description": "Your architecture diagram, coloured live by your monitoring: status per shape from thresholds, drill-down links, and a guided step-by-step tour.",
+    "author": {
+      "name": "Diagramium",
+      "url": "https://www.diagramium.com"
+    },
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {
+        "name": "Source code",
+        "url": "https://github.com/diagramium/grafana-diagramium-panel"
+      },
+      {
+        "name": "Diagramium",
+        "url": "https://www.diagramium.com"
+      },
+      {
+        "name": "diagramium-player (engine)",
+        "url": "https://github.com/diagramium/diagramium-player"
+      }
+    ],
+    "screenshots": [
+      {
+        "name": "The whole platform",
+        "path": "img/screenshots/platform.png"
+      },
+      {
+        "name": "Drill down, level by level",
+        "path": "img/screenshots/drill-down.png"
+      },
+      {
+        "name": "Kubernetes cluster",
+        "path": "img/screenshots/kubernetes.png"
+      },
+      {
+        "name": "Data pipeline",
+        "path": "img/screenshots/data-pipeline.png"
+      },
+      {
+        "name": "Inside Checkout",
+        "path": "img/screenshots/checkout.png"
+      },
+      {
+        "name": "Production deployment",
+        "path": "img/screenshots/production-deployment.png"
+      }
+    ],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+  "dependencies": {
+    "grafanaDependency": ">=12.3.0",
+    "plugins": []
+  }
+}

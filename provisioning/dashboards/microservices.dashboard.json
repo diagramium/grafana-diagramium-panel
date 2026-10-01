@@ -1,0 +1,195 @@
+{
+  "uid": "diagramium-microservices",
+  "title": "Online store — microservices",
+  "description": "Series named after services (query alias). No mapping at all: shapes match by their labels.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Online store — microservices",
+      "description": "Series named after services (query alias). No mapping at all: shapes match by their labels.",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "18,20,22,19,21",
+          "alias": "web-shop"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "35,38,41,44,41",
+          "alias": "api-gateway"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "12,15,14,16,18",
+          "alias": "auth"
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "30,33,31,36,35",
+          "alias": "catalog"
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "52,60,66,71,78",
+          "alias": "orders"
+        },
+        {
+          "refId": "F",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "48,70,88,94,96",
+          "alias": "payments"
+        },
+        {
+          "refId": "G",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "10,11,12,12,12",
+          "alias": "redis"
+        },
+        {
+          "refId": "H",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "55,58,60,62,64",
+          "alias": "orders-db"
+        },
+        {
+          "refId": "I",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "22,25,28,30,30",
+          "alias": "kafka"
+        },
+        {
+          "refId": "J",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "20,21,24,26,25",
+          "alias": "shipping"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"architecture\",\"state\":{\"title\":\"Online store — microservices\",\"theme\":null,\"nodes\":[{\"id\":\"web\",\"type\":\"webapp\",\"text\":\"Web shop\",\"x\":110,\"y\":210,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"mobile\",\"type\":\"mobile\",\"text\":\"Mobile app\",\"x\":110,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"gw\",\"type\":\"apigateway\",\"text\":\"API Gateway\",\"x\":330,\"y\":280,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"auth\",\"type\":\"auth\",\"text\":\"Auth\",\"x\":570,\"y\":90,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"catalog\",\"type\":\"service\",\"text\":\"Catalog\",\"x\":570,\"y\":210,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"orders\",\"type\":\"service\",\"text\":\"Orders\",\"x\":570,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"payments\",\"type\":\"service\",\"text\":\"Payments\",\"x\":570,\"y\":490,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"redis\",\"type\":\"cache\",\"text\":\"Redis\",\"x\":820,\"y\":210,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"ordersdb\",\"type\":\"database\",\"text\":\"Orders DB\",\"x\":820,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"kafka\",\"type\":\"queue\",\"text\":\"Kafka\",\"x\":1060,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"shipping\",\"type\":\"worker\",\"text\":\"Shipping\",\"x\":1060,\"y\":490,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"stripe\",\"type\":\"external\",\"text\":\"Stripe\",\"x\":820,\"y\":600,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"}],\"edges\":[{\"id\":\"e1\",\"from\":\"web\",\"to\":\"gw\",\"label\":\"\",\"kind\":null},{\"id\":\"e2\",\"from\":\"mobile\",\"to\":\"gw\",\"label\":\"\",\"kind\":null},{\"id\":\"e3\",\"from\":\"gw\",\"to\":\"auth\",\"label\":\"\",\"kind\":null},{\"id\":\"e4\",\"from\":\"gw\",\"to\":\"catalog\",\"label\":\"\",\"kind\":null},{\"id\":\"e5\",\"from\":\"gw\",\"to\":\"orders\",\"label\":\"\",\"kind\":null},{\"id\":\"e6\",\"from\":\"gw\",\"to\":\"payments\",\"label\":\"\",\"kind\":null},{\"id\":\"e7\",\"from\":\"catalog\",\"to\":\"redis\",\"label\":\"\",\"kind\":null},{\"id\":\"e8\",\"from\":\"orders\",\"to\":\"ordersdb\",\"label\":\"\",\"kind\":null},{\"id\":\"e9\",\"from\":\"orders\",\"to\":\"kafka\",\"label\":\"order.placed\",\"kind\":null},{\"id\":\"e10\",\"from\":\"kafka\",\"to\":\"shipping\",\"label\":\"\",\"kind\":null},{\"id\":\"e11\",\"from\":\"orders\",\"to\":\"payments\",\"label\":\"\",\"kind\":null},{\"id\":\"e12\",\"from\":\"payments\",\"to\":\"stripe\",\"label\":\"\",\"kind\":null}],\"narration\":{\"1\":\"Shoppers arrive through the web shop…\",\"2\":\"…or the mobile app. Both speak to one public API.\",\"3\":\"The API Gateway authenticates, rate-limits and routes every request.\",\"4\":\"Auth issues and checks tokens for every call.\",\"5\":\"Catalog serves products and prices, mostly from cache.\",\"6\":\"Orders is the heart of checkout: it writes the order and announces it.\",\"7\":\"Payments charges the card through Stripe.\",\"8\":\"Redis keeps the catalogue hot, so browsing never waits on the database.\",\"9\":\"Orders DB is the system of record for every order.\",\"10\":\"Kafka carries order.placed events to whoever needs them.\",\"11\":\"Shipping picks the order up and books the courier.\",\"12\":\"Stripe is external: when it slows down, Payments turns orange first.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {},
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "auto",
+        "themeBackground": false,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "app": "flow-diagram",
+  "version": 2,
+  "mode": "network",
+  "state": {
+    "title": "Server room \u2014 rack A",
+    "theme": null,
+    "nodes": [
+      {
+        "id": "rtr",
+        "type": "router",
+        "text": "core-rtr-1",
+        "x": 430,
+        "y": 120,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "fw",
+        "type": "firewall",
+        "text": "fw-1",
+        "x": 430,
+        "y": 240,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "swa",
+        "type": "switch",
+        "text": "tor-sw-a",
+        "x": 260,
+        "y": 370,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "swb",
+        "type": "switch",
+        "text": "tor-sw-b",
+        "x": 600,
+        "y": 370,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "s1",
+        "type": "server",
+        "text": "srv-a01",
+        "x": 100,
+        "y": 520,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "s2",
+        "type": "server",
+        "text": "srv-a02",
+        "x": 320,
+        "y": 520,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "s3",
+        "type": "server",
+        "text": "srv-a03",
+        "x": 540,
+        "y": 520,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "s4",
+        "type": "server",
+        "text": "srv-a04",
+        "x": 760,
+        "y": 520,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      },
+      {
+        "id": "nas",
+        "type": "nas",
+        "text": "nas-a1",
+        "x": 430,
+        "y": 650,
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "rtr",
+        "to": "fw",
+        "label": "uplink",
+        "kind": null
+      },
+      {
+        "id": "e2",
+        "from": "fw",
+        "to": "swa",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e3",
+        "from": "fw",
+        "to": "swb",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e4",
+        "from": "swa",
+        "to": "s1",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e5",
+        "from": "swa",
+        "to": "s2",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e6",
+        "from": "swa",
+        "to": "s3",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e7",
+        "from": "swa",
+        "to": "s4",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e8",
+        "from": "swb",
+        "to": "s1",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e9",
+        "from": "swb",
+        "to": "s2",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e10",
+        "from": "swb",
+        "to": "s3",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e11",
+        "from": "swb",
+        "to": "s4",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e12",
+        "from": "swa",
+        "to": "nas",
+        "label": "",
+        "kind": null
+      },
+      {
+        "id": "e13",
+        "from": "swb",
+        "to": "nas",
+        "label": "",
+        "kind": null
+      }
+    ],
+    "narration": {
+      "1": "core-rtr-1 is the rack's uplink to the data-centre network.",
+      "2": "fw-1 sits between the uplink and everything in the rack.",
+      "3": "Two top-of-rack switches, A\u2026",
+      "4": "\u2026and B. Every server is cabled to both, so one switch can fail.",
+      "5": "srv-a01 to srv-a04 are the compute nodes.",
+      "6": "Each one reports temperature, power draw and fan speed.",
+      "7": "The panel colours a server by its WORST reading.",
+      "8": "A hot server turns orange before it throttles.",
+      "9": "nas-a1 holds shared storage for the whole rack."
+    }
+  }
+}

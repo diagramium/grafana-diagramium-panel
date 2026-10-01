@@ -1,0 +1,338 @@
+{
+  "uid": "diagramium-data-pipeline",
+  "title": "Data pipeline — events to insight",
+  "description": "Consumer lag per stream job, freshness per table, failed loads, service health, and topic throughput as blue information that never decides a status.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "5s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Data pipeline — events to insight",
+      "description": "Consumer lag per stream job, freshness per table, failed loads, service health, and topic throughput as blue information that never decides a status.",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "1200,1800,2400,2100,1500,1300",
+              "labels": "consumer_group=sessionizer",
+              "name": "Consumer lag"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "40,60,90,80,50,45",
+              "labels": "consumer_group=fraud-scorer",
+              "name": "Consumer lag"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "2000,14000,42000,180000,60000,9000",
+              "labels": "consumer_group=enricher",
+              "name": "Consumer lag"
+            }
+          ]
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "910,980,1040,1010,950,920",
+              "labels": "topic=web-clickstream",
+              "name": "Throughput"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "905,975,1035,1005,945,915",
+              "labels": "topic=clicks-topic",
+              "name": "Throughput"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "44,46,51,48,45,44",
+              "labels": "topic=orders-topic",
+              "name": "Throughput"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "44,46,51,48,45,44",
+              "labels": "topic=orders-cdc",
+              "name": "Throughput"
+            }
+          ]
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "3,4,4,5,4,3",
+              "labels": "table=data-lake",
+              "name": "Freshness"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "12,18,35,70,40,15",
+              "labels": "table=warehouse",
+              "name": "Freshness"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,2,1,1,1",
+              "labels": "table=feature-store",
+              "name": "Freshness"
+            }
+          ]
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "0,0,1,1,1,0",
+              "labels": "job=file-loader",
+              "name": "Failed loads (24h)"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0,0,0,0,0,0",
+              "labels": "job=partner-files",
+              "name": "Failed loads (24h)"
+            }
+          ]
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,1,1,1,1",
+              "labels": "service=bi-dashboards",
+              "name": "Up"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,1,0,1,1",
+              "labels": "service=recommendations",
+              "name": "Up"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 10000
+              },
+              {
+                "color": "red",
+                "value": 100000
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "mps"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "m"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 15
+                    },
+                    {
+                      "color": "red",
+                      "value": 60
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 3
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "DOWN",
+                        "color": "red",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "UP",
+                        "color": "green",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"architecture\",\"state\":{\"title\":\"Data pipeline — events to insight\",\"theme\":null,\"nodes\":[{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"clicks\",\"type\":\"webapp\",\"text\":\"Web clickstream\",\"x\":100,\"y\":160},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"cdc\",\"type\":\"service\",\"text\":\"Orders CDC\",\"x\":100,\"y\":330},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"partner\",\"type\":\"storage\",\"text\":\"Partner files\",\"x\":100,\"y\":500},{\"color\":null,\"w\":185,\"h\":492,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ingest\",\"type\":\"group\",\"text\":\"Ingest\",\"x\":330,\"y\":313},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ingest\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"t_clicks\",\"type\":\"queue\",\"text\":\"clicks topic\",\"x\":330,\"y\":160},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ingest\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"t_orders\",\"type\":\"queue\",\"text\":\"orders topic\",\"x\":330,\"y\":330},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ingest\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"loader\",\"type\":\"worker\",\"text\":\"File loader\",\"x\":330,\"y\":500},{\"color\":null,\"w\":185,\"h\":492,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"process\",\"type\":\"group\",\"text\":\"Stream processing\",\"x\":570,\"y\":313},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"process\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"sessionizer\",\"type\":\"worker\",\"text\":\"Sessionizer\",\"x\":570,\"y\":160},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"process\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"fraud\",\"type\":\"ai\",\"text\":\"Fraud scorer\",\"x\":570,\"y\":330},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"process\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"enricher\",\"type\":\"worker\",\"text\":\"Enricher\",\"x\":570,\"y\":500},{\"color\":null,\"w\":192,\"h\":492,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"store\",\"type\":\"group\",\"text\":\"Storage\",\"x\":820,\"y\":313},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"store\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"lake\",\"type\":\"storage\",\"text\":\"Data lake\",\"x\":820,\"y\":160},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"store\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"features\",\"type\":\"cache\",\"text\":\"Feature store\",\"x\":820,\"y\":330},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"store\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"warehouse\",\"type\":\"database\",\"text\":\"Warehouse\",\"x\":820,\"y\":500},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"reco\",\"type\":\"ai\",\"text\":\"Recommendations\",\"x\":1070,\"y\":300},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"bi\",\"type\":\"monitoring\",\"text\":\"BI dashboards\",\"x\":1070,\"y\":470}],\"edges\":[{\"id\":\"e1\",\"from\":\"clicks\",\"to\":\"t_clicks\",\"label\":\"\"},{\"id\":\"e2\",\"from\":\"cdc\",\"to\":\"t_orders\",\"label\":\"\"},{\"id\":\"e3\",\"from\":\"partner\",\"to\":\"loader\",\"label\":\"\"},{\"id\":\"e4\",\"from\":\"t_clicks\",\"to\":\"sessionizer\",\"label\":\"\"},{\"id\":\"e5\",\"from\":\"t_orders\",\"to\":\"fraud\",\"label\":\"\"},{\"id\":\"e6\",\"from\":\"t_orders\",\"to\":\"enricher\",\"label\":\"\"},{\"id\":\"e7\",\"from\":\"loader\",\"to\":\"enricher\",\"label\":\"\"},{\"id\":\"e8\",\"from\":\"sessionizer\",\"to\":\"lake\",\"label\":\"\"},{\"id\":\"e9\",\"from\":\"fraud\",\"to\":\"features\",\"label\":\"\"},{\"id\":\"e10\",\"from\":\"enricher\",\"to\":\"warehouse\",\"label\":\"\"},{\"id\":\"e11\",\"from\":\"features\",\"to\":\"reco\",\"label\":\"\"},{\"id\":\"e12\",\"from\":\"warehouse\",\"to\":\"bi\",\"label\":\"\"}],\"narration\":{\"1\":\"Clicks stream in from the website…\",\"2\":\"…orders arrive by change-data-capture from the Orders DB…\",\"3\":\"…and partners drop nightly files into a bucket.\",\"4\":\"Ingest: two topics and a file loader.\",\"5\":\"The clicks topic: tens of thousands of events a minute.\",\"6\":\"The orders topic: every order change.\",\"7\":\"The file loader picks the files up and validates them.\",\"8\":\"Stream processing: three jobs, each with a consumer lag to watch.\",\"9\":\"The sessionizer stitches clicks into visits.\",\"10\":\"The fraud scorer rates every order within seconds.\",\"11\":\"The enricher joins orders with customers, products and partner files.\",\"12\":\"Storage: freshness is the number that matters here.\",\"13\":\"Sessions land in the data lake.\",\"14\":\"Fraud scores and features go to the feature store.\",\"15\":\"The warehouse holds the modelled tables.\",\"16\":\"Recommendations read features in real time.\",\"17\":\"Analysts read the warehouse through BI dashboards.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {},
+        "reducer": "lastNotNull",
+        "colorMode": "fill",
+        "badge": "value",
+        "edges": "both",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "auto",
+        "themeBackground": false,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}

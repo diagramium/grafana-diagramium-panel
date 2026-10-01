@@ -1,0 +1,244 @@
+{
+  "uid": "diagramium-production",
+  "title": "Production deployment",
+  "description": "Live series labelled instance=\"host:9100\", like node_exporter, cycling every 10 s. backup-nas is mapped but has no data, so it says so.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "5s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Production deployment",
+      "description": "Live series labelled instance=\"host:9100\", like node_exporter, cycling every 10 s. backup-nas is mapped but has no data, so it says so.",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "18,22,25,21",
+              "labels": "instance=fw-edge:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "30,34,41,38,33",
+              "labels": "instance=lb-1:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "44,52,61,58,49",
+              "labels": "instance=web-1:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "48,57,66,74,63,55",
+              "labels": "instance=web-2:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "62,78,93,97,84,70",
+              "labels": "instance=web-3:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "F",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "51,58,63,60",
+              "labels": "instance=app-1:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "G",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "38,44,40,36",
+              "labels": "instance=app-2:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "H",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "66,72,79,75,69",
+              "labels": "instance=db-primary:9100",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "refId": "I",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "25,28,31,27",
+              "labels": "instance=db-replica:9100",
+              "name": ""
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "percent",
+          "displayName": "CPU",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"network\",\"state\":{\"title\":\"Production deployment\",\"theme\":null,\"nodes\":[{\"id\":\"internet\",\"type\":\"internet\",\"text\":\"Internet\",\"x\":100,\"y\":280,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"fw\",\"type\":\"firewall\",\"text\":\"fw-edge\",\"x\":270,\"y\":280,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"lb\",\"type\":\"loadbalancer\",\"text\":\"lb-1\",\"x\":440,\"y\":280,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"web1\",\"type\":\"server\",\"text\":\"web-1\\nnginx\",\"x\":640,\"y\":140,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"web2\",\"type\":\"server\",\"text\":\"web-2\\nnginx\",\"x\":640,\"y\":280,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"web3\",\"type\":\"server\",\"text\":\"web-3\\nnginx\",\"x\":640,\"y\":420,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"app1\",\"type\":\"server\",\"text\":\"app-1\\napi\",\"x\":850,\"y\":210,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"app2\",\"type\":\"server\",\"text\":\"app-2\\napi\",\"x\":850,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"dbp\",\"type\":\"database\",\"text\":\"db-primary\",\"x\":1070,\"y\":210,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"dbr\",\"type\":\"database\",\"text\":\"db-replica\",\"x\":1070,\"y\":350,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"nas\",\"type\":\"nas\",\"text\":\"backup-nas\",\"x\":1070,\"y\":500,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"}],\"edges\":[{\"id\":\"e1\",\"from\":\"internet\",\"to\":\"fw\",\"label\":\"\",\"kind\":null},{\"id\":\"e2\",\"from\":\"fw\",\"to\":\"lb\",\"label\":\"\",\"kind\":null},{\"id\":\"e3\",\"from\":\"lb\",\"to\":\"web1\",\"label\":\"\",\"kind\":null},{\"id\":\"e4\",\"from\":\"lb\",\"to\":\"web2\",\"label\":\"\",\"kind\":null},{\"id\":\"e5\",\"from\":\"lb\",\"to\":\"web3\",\"label\":\"\",\"kind\":null},{\"id\":\"e6\",\"from\":\"web1\",\"to\":\"app1\",\"label\":\"\",\"kind\":null},{\"id\":\"e7\",\"from\":\"web2\",\"to\":\"app1\",\"label\":\"\",\"kind\":null},{\"id\":\"e8\",\"from\":\"web2\",\"to\":\"app2\",\"label\":\"\",\"kind\":null},{\"id\":\"e9\",\"from\":\"web3\",\"to\":\"app2\",\"label\":\"\",\"kind\":null},{\"id\":\"e10\",\"from\":\"app1\",\"to\":\"dbp\",\"label\":\"\",\"kind\":null},{\"id\":\"e11\",\"from\":\"app2\",\"to\":\"dbp\",\"label\":\"\",\"kind\":null},{\"id\":\"e12\",\"from\":\"dbp\",\"to\":\"dbr\",\"label\":\"replication\",\"kind\":null},{\"id\":\"e13\",\"from\":\"dbr\",\"to\":\"nas\",\"label\":\"nightly backup\",\"kind\":null}],\"narration\":{\"1\":\"Traffic comes in from the internet.\",\"2\":\"The edge firewall only lets 80 and 443 through.\",\"3\":\"lb-1 spreads requests across the web tier and drops a host that fails its health check.\",\"4\":\"Three nginx hosts terminate TLS and serve static files…\",\"5\":\"…so losing one of them costs a third of capacity, not the site.\",\"6\":\"Each web host forwards API calls to the app tier.\",\"7\":\"app-1 and app-2 run the API.\",\"8\":\"Both write to the same primary database.\",\"9\":\"db-primary takes every write.\",\"10\":\"db-replica follows it, ready to be promoted.\",\"11\":\"Every night the replica is backed up to the NAS.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {
+          "nas": {
+            "match": "backup-nas"
+          }
+        },
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "auto",
+        "themeBackground": false,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}

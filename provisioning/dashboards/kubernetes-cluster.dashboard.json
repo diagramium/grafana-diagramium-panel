@@ -1,0 +1,341 @@
+{
+  "uid": "diagramium-kubernetes",
+  "title": "Kubernetes cluster — prod-eu-1",
+  "description": "CPU and restarts per deployment / pod, volume usage, and node readiness mapped 1 → Ready (green), 0 → NotReady (red).",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "5s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Kubernetes cluster — prod-eu-1",
+      "description": "CPU and restarts per deployment / pod, volume usage, and node readiness mapped 1 → Ready (green), 0 → NotReady (red).",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "22,25,31,28,24,22",
+              "labels": "deployment=ingress-nginx",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "35,38,42,40,37,35",
+              "labels": "deployment=frontend",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "48,61,74,82,66,52",
+              "labels": "deployment=api",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "30,34,38,36,33,31",
+              "labels": "deployment=worker",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "41,43,45,44,42,41",
+              "labels": "deployment=prometheus",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "5,6,5,6,5,5",
+              "labels": "deployment=alertmanager",
+              "name": "CPU"
+            }
+          ]
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "38,41,47,45,40,39",
+              "labels": "pod=postgres-0",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "12,14,13,15,12,12",
+              "labels": "pod=redis-0",
+              "name": "CPU"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "28,31,36,33,30,29",
+              "labels": "pod=kafka-0",
+              "name": "CPU"
+            }
+          ]
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "0,0,0,0,0,0",
+              "labels": "deployment=api",
+              "name": "Restarts (1h)"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0,0,2,2,3,3",
+              "labels": "deployment=worker",
+              "name": "Restarts (1h)"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "0,0,0,0,0,0",
+              "labels": "deployment=frontend",
+              "name": "Restarts (1h)"
+            }
+          ]
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "76,77,78,79,80,81",
+              "labels": "pod=postgres-0",
+              "name": "Volume used"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "41,42,42,43,43,44",
+              "labels": "pod=kafka-0",
+              "name": "Volume used"
+            }
+          ]
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "predictable_csv_wave",
+          "csvWave": [
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,1,1,1,1",
+              "labels": "node=node-1",
+              "name": "Ready"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,0,0,1,1",
+              "labels": "node=node-2",
+              "name": "Ready"
+            },
+            {
+              "timeStep": 10,
+              "valuesCSV": "1,1,1,1,1,1",
+              "labels": "node=node-3",
+              "name": "Ready"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "percent",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 5
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 75
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "NotReady",
+                        "color": "red",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "Ready",
+                        "color": "green",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"architecture\",\"state\":{\"title\":\"Kubernetes cluster — prod-eu-1\",\"theme\":null,\"nodes\":[{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"clb\",\"type\":\"cdn\",\"text\":\"Cloud load balancer\",\"x\":110,\"y\":330},{\"color\":null,\"w\":192,\"h\":152,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ns_ing\",\"type\":\"group\",\"text\":\"namespace: ingress-nginx\",\"x\":330,\"y\":313},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_ing\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ingress\",\"type\":\"loadbalancer\",\"text\":\"ingress-nginx\",\"x\":330,\"y\":330},{\"color\":null,\"w\":172,\"h\":432,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ns_shop\",\"type\":\"group\",\"text\":\"namespace: shop\",\"x\":560,\"y\":343},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_shop\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"frontend\",\"type\":\"webapp\",\"text\":\"frontend\",\"x\":560,\"y\":220},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_shop\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"api\",\"type\":\"service\",\"text\":\"api\",\"x\":560,\"y\":360},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_shop\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"worker\",\"type\":\"worker\",\"text\":\"worker\",\"x\":560,\"y\":500},{\"color\":null,\"w\":172,\"h\":432,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ns_data\",\"type\":\"group\",\"text\":\"namespace: data\",\"x\":820,\"y\":343},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"postgres\",\"type\":\"database\",\"text\":\"postgres-0\",\"x\":820,\"y\":220},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"redis\",\"type\":\"cache\",\"text\":\"redis-0\",\"x\":820,\"y\":360},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_data\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"kafka\",\"type\":\"queue\",\"text\":\"kafka-0\",\"x\":820,\"y\":500},{\"color\":null,\"w\":185,\"h\":292,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"ns_mon\",\"type\":\"group\",\"text\":\"namespace: monitoring\",\"x\":1080,\"y\":353},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_mon\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"prom\",\"type\":\"monitoring\",\"text\":\"prometheus\",\"x\":1080,\"y\":300},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"ns_mon\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"alert\",\"type\":\"monitoring\",\"text\":\"alertmanager\",\"x\":1080,\"y\":440},{\"color\":null,\"w\":612,\"h\":152,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"nodes\",\"type\":\"group\",\"text\":\"Worker nodes\",\"x\":600,\"y\":663},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"nodes\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"node1\",\"type\":\"client\",\"text\":\"node-1\",\"x\":380,\"y\":680},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"nodes\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"node2\",\"type\":\"client\",\"text\":\"node-2\",\"x\":600,\"y\":680},{\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"nodes\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\",\"id\":\"node3\",\"type\":\"client\",\"text\":\"node-3\",\"x\":820,\"y\":680}],\"edges\":[{\"id\":\"e1\",\"from\":\"clb\",\"to\":\"ingress\",\"label\":\"\"},{\"id\":\"e2\",\"from\":\"ingress\",\"to\":\"frontend\",\"label\":\"\"},{\"id\":\"e3\",\"from\":\"ingress\",\"to\":\"api\",\"label\":\"/api\"},{\"id\":\"e4\",\"from\":\"frontend\",\"to\":\"api\",\"label\":\"\"},{\"id\":\"e5\",\"from\":\"api\",\"to\":\"postgres\",\"label\":\"\"},{\"id\":\"e6\",\"from\":\"api\",\"to\":\"redis\",\"label\":\"\"},{\"id\":\"e7\",\"from\":\"api\",\"to\":\"kafka\",\"label\":\"jobs\"},{\"id\":\"e8\",\"from\":\"kafka\",\"to\":\"worker\",\"label\":\"\"},{\"id\":\"e9\",\"from\":\"prom\",\"to\":\"alert\",\"label\":\"\"}],\"narration\":{\"1\":\"Traffic enters through the cloud load balancer.\",\"2\":\"The ingress controller has its own namespace.\",\"3\":\"ingress-nginx routes hosts and paths to services.\",\"4\":\"The shop namespace holds the stateless deployments.\",\"5\":\"frontend: the web app, three replicas.\",\"6\":\"api: the backend, autoscaled between 3 and 12 pods.\",\"7\":\"worker: background jobs pulled from Kafka.\",\"8\":\"The data namespace holds the stateful sets.\",\"9\":\"postgres-0: a StatefulSet with a 100 GB volume.\",\"10\":\"redis-0: cache and rate-limit counters.\",\"11\":\"kafka-0: the job and event stream.\",\"12\":\"Monitoring watches all of it.\",\"13\":\"Prometheus scrapes every pod and node.\",\"14\":\"Alertmanager pages the on-call engineer.\",\"15\":\"The nodes the pods are scheduled on.\",\"16\":\"Underneath, three worker nodes…\",\"17\":\"…each running a mix of pods…\",\"18\":\"…so losing one node costs capacity, not the service.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {},
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "bento-card",
+        "themeBackground": true,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}

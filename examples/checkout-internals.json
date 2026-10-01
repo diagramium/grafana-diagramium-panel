@@ -1,0 +1,249 @@
+{
+  "app": "flow-diagram",
+  "version": 2,
+  "mode": "flowchart",
+  "state": {
+    "title": "Inside Checkout — POST /checkout",
+    "theme": null,
+    "nodes": [
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "req",
+        "type": "start",
+        "text": "POST /checkout",
+        "x": 140,
+        "y": 90
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "validate",
+        "type": "process",
+        "text": "Validate cart",
+        "x": 140,
+        "y": 200
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "price",
+        "type": "process",
+        "text": "Price & tax",
+        "x": 140,
+        "y": 310
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "reserve",
+        "type": "process",
+        "text": "Reserve stock",
+        "x": 140,
+        "y": 420
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "fraud",
+        "type": "decision",
+        "text": "Fraud check",
+        "x": 140,
+        "y": 550
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "charge",
+        "type": "process",
+        "text": "Charge card",
+        "x": 420,
+        "y": 550
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "order",
+        "type": "process",
+        "text": "Create order",
+        "x": 420,
+        "y": 420
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "publish",
+        "type": "process",
+        "text": "Publish order.placed",
+        "x": 420,
+        "y": 310
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "ok",
+        "type": "end",
+        "text": "200 Confirmed",
+        "x": 420,
+        "y": 200
+      },
+      {
+        "color": null,
+        "w": null,
+        "h": null,
+        "opacity": 1,
+        "locked": false,
+        "back": false,
+        "parentId": null,
+        "fontFamily": null,
+        "fontSize": null,
+        "borderStyle": "solid",
+        "id": "reject",
+        "type": "end",
+        "text": "402 Declined",
+        "x": 140,
+        "y": 680
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "req",
+        "to": "validate",
+        "label": ""
+      },
+      {
+        "id": "e2",
+        "from": "validate",
+        "to": "price",
+        "label": ""
+      },
+      {
+        "id": "e3",
+        "from": "price",
+        "to": "reserve",
+        "label": ""
+      },
+      {
+        "id": "e4",
+        "from": "reserve",
+        "to": "fraud",
+        "label": ""
+      },
+      {
+        "id": "e5",
+        "from": "fraud",
+        "to": "charge",
+        "label": "pass"
+      },
+      {
+        "id": "e6",
+        "from": "fraud",
+        "to": "reject",
+        "label": "fail"
+      },
+      {
+        "id": "e7",
+        "from": "charge",
+        "to": "order",
+        "label": ""
+      },
+      {
+        "id": "e8",
+        "from": "order",
+        "to": "publish",
+        "label": ""
+      },
+      {
+        "id": "e9",
+        "from": "publish",
+        "to": "ok",
+        "label": ""
+      }
+    ],
+    "narration": {
+      "1": "A checkout request arrives from the gateway.",
+      "2": "Validate the cart: items exist, quantities make sense.",
+      "3": "Price it and add tax for the delivery address.",
+      "4": "Reserve stock in Inventory, so nobody else buys the last one.",
+      "5": "A fraud score decides whether to go on.",
+      "6": "Charge the card through Payments and Stripe — the slowest step.",
+      "7": "Write the order to the Orders DB.",
+      "8": "Publish order.placed for fulfilment and email.",
+      "9": "Confirmed: the shopper sees the thank-you page.",
+      "10": "A high fraud score declines the order and releases the stock."
+    }
+  }
+}

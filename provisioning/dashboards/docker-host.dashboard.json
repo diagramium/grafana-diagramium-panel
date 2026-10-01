@@ -1,0 +1,175 @@
+{
+  "uid": "diagramium-docker-host",
+  "title": "Docker host — docker-host-1",
+  "description": "A per-container table (CPU, memory, restarts — cAdvisor style) plus a host series. Restarts has its own thresholds.",
+  "tags": ["diagramium", "demo"],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Demo dashboards",
+      "type": "dashboards",
+      "tags": ["diagramium"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "diagramium-diagram-panel",
+      "title": "Docker host — docker-host-1",
+      "description": "A per-container table (CPU, memory, restarts — cAdvisor style) plus a host series. Restarts has its own thresholds.",
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_content",
+          "csvContent": "container,cpu,mem,restarts\nnginx,4,12,0\napi,63,71,0\nworker,38,55,3\nredis,9,22,0\npostgres,27,93,0\nprometheus,15,40,0"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "trlxrdZVk"
+          },
+          "scenarioId": "csv_metric_values",
+          "stringInput": "40,44,47,51,55",
+          "alias": "docker-host-1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cpu"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mem"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Memory"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "restarts"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Restarts"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 5
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "source": "inline",
+        "diagram": "{\"app\":\"flow-diagram\",\"version\":2,\"mode\":\"architecture\",\"state\":{\"title\":\"Docker host — docker-host-1\",\"theme\":null,\"nodes\":[{\"id\":\"users\",\"type\":\"client\",\"text\":\"Users\",\"x\":90,\"y\":320,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"host\",\"type\":\"group\",\"text\":\"docker-host-1\",\"x\":660,\"y\":320,\"color\":null,\"w\":860,\"h\":470,\"opacity\":1,\"locked\":false,\"back\":true,\"parentId\":null,\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"nginx\",\"type\":\"webapp\",\"text\":\"nginx\",\"x\":340,\"y\":320,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"api\",\"type\":\"service\",\"text\":\"api\",\"x\":570,\"y\":220,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"worker\",\"type\":\"worker\",\"text\":\"worker\",\"x\":570,\"y\":420,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"redis\",\"type\":\"cache\",\"text\":\"redis\",\"x\":810,\"y\":420,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"postgres\",\"type\":\"database\",\"text\":\"postgres\",\"x\":810,\"y\":220,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"},{\"id\":\"prom\",\"type\":\"monitoring\",\"text\":\"prometheus\",\"x\":1010,\"y\":330,\"color\":null,\"w\":null,\"h\":null,\"opacity\":1,\"locked\":false,\"back\":false,\"parentId\":\"host\",\"fontFamily\":null,\"fontSize\":null,\"borderStyle\":\"solid\"}],\"edges\":[{\"id\":\"e1\",\"from\":\"users\",\"to\":\"nginx\",\"label\":\"https\",\"kind\":null},{\"id\":\"e2\",\"from\":\"nginx\",\"to\":\"api\",\"label\":\"\",\"kind\":null},{\"id\":\"e3\",\"from\":\"api\",\"to\":\"postgres\",\"label\":\"\",\"kind\":null},{\"id\":\"e4\",\"from\":\"api\",\"to\":\"redis\",\"label\":\"jobs\",\"kind\":null},{\"id\":\"e5\",\"from\":\"redis\",\"to\":\"worker\",\"label\":\"\",\"kind\":null},{\"id\":\"e6\",\"from\":\"worker\",\"to\":\"postgres\",\"label\":\"\",\"kind\":null},{\"id\":\"e7\",\"from\":\"prom\",\"to\":\"api\",\"label\":\"scrape\",\"kind\":null}],\"narration\":{\"1\":\"Users reach the host over HTTPS.\",\"2\":\"One Docker host runs the whole stack in containers.\",\"3\":\"nginx is the only published port.\",\"4\":\"api handles requests…\",\"5\":\"…and hands slow work to the worker through a Redis queue.\",\"6\":\"redis is the queue and the cache.\",\"7\":\"postgres keeps the data, on a named volume.\",\"8\":\"prometheus scrapes cAdvisor: CPU, memory and restarts per container.\"}}}",
+        "url": "",
+        "matchLabel": "",
+        "nodes": {},
+        "reducer": "lastNotNull",
+        "colorMode": "border",
+        "badge": "value",
+        "edges": "target",
+        "unmatched": "keep",
+        "defaultLink": "/d/diagramium-drill-down/drill-down?var-target=${__node.match}&${__url_time_range}",
+        "newTab": false,
+        "theme": "glassmorphism",
+        "themeBackground": true,
+        "fontScale": 1,
+        "showLegend": true,
+        "showTour": true,
+        "stepSeconds": 4
+      }
+    }
+  ]
+}
