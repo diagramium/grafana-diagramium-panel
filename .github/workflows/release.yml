@@ -1,11 +1,20 @@
-# This GitHub Action automates the process of building Grafana plugins.
-# (For more information, see https://github.com/grafana/plugin-actions/blob/main/build-plugin/README.md)
+# Builds the plugin zip and publishes it as a GitHub release.
+#
+# Runs when a version tag (v1.2.3) is pushed, or by hand from the Actions tab
+# ("Run workflow") for a tag that already exists. The plugin is distributed
+# unsigned from GitHub, so Grafana's catalog validator runs as a report only:
+# its Grafana Cloud account check is a catalog requirement, not a release one.
 name: Release
 
 on:
   push:
     tags:
-      - 'v*' # Run workflow on version tags, e.g. v1.0.0.
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to release, e.g. v0.1.0'
+        required: true
 
 permissions: read-all
 
@@ -14,16 +23,79 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v6
         with:
+          ref: ${{ env.TAG }}
           persist-credentials: false
 
-      - uses: grafana/plugin-actions/build-plugin@build-plugin/v1.2.0
-        # Uncomment to enable plugin signing
-        # (For more info on how to generate the access policy token see https://grafana.com/developers/plugin-tools/publish-a-plugin/sign-a-plugin#generate-an-access-policy-token)
-        #with:
-        # Make sure to save the token in your repository secrets
-        #policy_token: $
-        # Usage of GRAFANA_API_KEY is deprecated, prefer `policy_token` option above
-        #grafana_token: $
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Check
+        run: |
+          npm run typecheck
+          npm run lint
+          npm run test:ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check the version matches the tag
+        run: |
+          VERSION=$(jq -r .info.version dist/plugin.json)
+          if [ "v${VERSION}" != "${TAG}" ]; then
+            echo "::error::plugin version ${VERSION} does not match tag ${TAG}"
+            exit 1
+          fi
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+
+      - name: Package
+        run: |
+          ID=$(jq -r .id dist/plugin.json)
+          ARCHIVE="${ID}-${VERSION}.zip"
+          mv dist "${ID}"
+          zip -qr "${ARCHIVE}" "${ID}"
+          sha1sum "${ARCHIVE}" | cut -d' ' -f1 > "${ARCHIVE}.sha1"
+          echo "ARCHIVE=${ARCHIVE}" >> "$GITHUB_ENV"
+
+      - name: Grafana plugin validator (report only)
+        continue-on-error: true
+        run: npx -y @grafana/plugin-validator@latest -sourceCodeUri file://./ "${ARCHIVE}"
+
+      - name: Release notes from the changelog
+        run: |
+          awk -v v="${VERSION}" '
+            /^## / { if (found) exit; if (index($0, "## " v) == 1) { found = 1; next } }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          cat >> notes.md <<'NOTES'
+
+          ### Install
+
+          Unzip the attached archive into your Grafana plugins folder (or use `grafana cli --pluginUrl <zip url> plugins install diagramium-diagram-panel`), allow the unsigned plugin and restart Grafana:
+
+          ```ini
+          [plugins]
+          allow_loading_unsigned_plugins = diagramium-diagram-panel
+          ```
+
+          Documentation: https://github.com/diagramium/grafana-diagramium-panel#readme
+          NOTES
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${TAG}" "${ARCHIVE}" "${ARCHIVE}.sha1" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "${TAG}" \
+            --notes-file notes.md \
+            --verify-tag
