@@ -51,7 +51,7 @@ What each one demonstrates: [docs/examples.md](https://github.com/diagramium/gra
 Free and MIT-licensed, distributed on the [releases page](https://github.com/diagramium/grafana-diagramium-panel/releases). It isn't in the Grafana catalog, so it's unsigned, and Grafana has to be told to load it. That works on any self-hosted Grafana 12.3 or newer; Grafana Cloud only loads signed plugins.
 
 ```bash
-grafana cli --pluginUrl https://github.com/diagramium/grafana-diagramium-panel/releases/download/v0.1.0/diagramium-diagram-panel-0.1.0.zip plugins install diagramium-diagram-panel
+grafana cli --pluginUrl https://github.com/diagramium/grafana-diagramium-panel/releases/latest/download/diagramium-diagram-panel.zip plugins install diagramium-diagram-panel
 ```
 
 ```ini

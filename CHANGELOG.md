@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1 — 2026-10-01
+
+Maintenance release; the panel behaves as in 0.1.0.
+
+- Install from a stable address: every release now also carries `diagramium-diagram-panel.zip`, so `https://github.com/diagramium/grafana-diagramium-panel/releases/latest/download/diagramium-diagram-panel.zip` is always the newest version (the README uses it).
+- Releases are built by this repository's own workflow (build, test, package, publish to GitHub), and can be re-run for an existing tag from the Actions tab.
+- The _Start here_ demo dashboard shows an empty Diagramium panel beside the index: what a new panel looks like before a diagram is uploaded.
+- Tested on Grafana 12.3, 12.4, 13.0, 13.1, 13.2 and nightly; the end-to-end tests no longer depend on the visualization picker, whose markup changed in 12.4.
+- `@emotion/css` 11.13.5, TypeScript 5.9.3, and current versions of the CI actions. Dependabot now sends one grouped update a month.
+
 ## 0.1.0 — 2026-10-01
 
 First release.
