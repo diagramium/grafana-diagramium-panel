@@ -42,3 +42,17 @@ By contributing, you agree that your contribution is licensed under the project'
 ## Reporting bugs
 
 Open an issue with your Grafana version, the data source, what you expected and what happened. If you can, attach the diagram `.json` and an export of the panel JSON (remove anything private first).
+
+## Releasing (maintainers)
+
+1. On a branch: bump `version` in `package.json` (`npm version 1.2.3 --no-git-tag-version`) and add its section to `CHANGELOG.md` — that section becomes the release notes.
+2. Open a pull request and merge it once CI is green.
+3. Tag the merge commit and push the tag:
+
+   ```bash
+   git checkout main && git pull
+   git tag -a v1.2.3 -m "Diagramium panel 1.2.3"
+   git push origin v1.2.3
+   ```
+
+The **Release** workflow then builds, tests and packages the plugin and publishes the GitHub release with `diagramium-diagram-panel-<version>.zip`, its `.sha1`, and the same zip as `diagramium-diagram-panel.zip` (the README's "latest" install link). It refuses to run if the tag and `package.json` disagree. **Actions → Release → Run workflow** only rebuilds the release for a tag that already exists.
